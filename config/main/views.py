@@ -2,6 +2,7 @@ from rest_framework.generics import ListCreateAPIView, RetrieveUpdateAPIView
 
 
 from .models import Category, Product, Order
+from .pagination import CategoryPagination, ProductPagination, OrderPagination
 from .permissions import Permission
 from .serializer import  CategorySerializers, ProductSerializers, OrderSerializers
 from .throttling import CategoryAnonThrottling, CategoryUserThrottling, ProductAnonThrottling, ProductUserThrottling, \
@@ -13,6 +14,7 @@ class CategoryApiView(ListCreateAPIView):
     serializer_class = CategorySerializers
     # permission_classes = [Permission]
     throttle_classes = [CategoryAnonThrottling,CategoryUserThrottling]
+    pagination_class = CategoryPagination
 
 
 class CategoryDetailApiView(RetrieveUpdateAPIView):
@@ -28,6 +30,7 @@ class ProductApiView(ListCreateAPIView):
     serializer_class = ProductSerializers
     # permission_classes = [Permission]
     throttle_classes = [ProductAnonThrottling, ProductUserThrottling]
+    pagination_class = ProductPagination
 
 
 
@@ -44,6 +47,7 @@ class OrderApiView(ListCreateAPIView):
     serializer_class = OrderSerializers
     # permission_classes = [Permission]
     throttle_classes = [OrderAnonThrottling, OrderUserThrottling]
+    pagination_class = OrderPagination
 
 
 class OrderDetailApiView(RetrieveUpdateAPIView):
